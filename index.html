@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AH Calculator</title>
+    <style>
+        .calculator-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .calculator-btn:hover {
+            background-color: #ddd;
+        }
+        #calculate-btn {
+            width: auto; /* Resize the button to accommodate the word */
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #calculate-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>AH Calculator</h1>
+    <form action="/calculate" method="post">
+        <input type="text" name="expression" id="expression" readonly>
+        <br>
+        <div>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(1)">1</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(2)">2</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(3)">3</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression('+')">+</button>
+        </div>
+        <div>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(4)">4</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(5)">5</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(6)">6</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression('-')">-</button>
+        </div>
+        <div>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(7)">7</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(8)">8</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(9)">9</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression('*')">*</button>
+        </div>
+        <div>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(0)">0</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression('.')">.</button>
+            <button class="calculator-btn" type="button" onclick="clearExpression()">AC</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression('/')">/</button>
+        </div>
+        <div>
+            <button class="calculator-btn" type="button" onclick="appendToExpression('(')">(</button>
+            <button class="calculator-btn" type="button" onclick="appendToExpression(')')">)</button>
+            <button id="calculate-btn" type="button" onclick="calculate()">=</button>
+        </div>
+    </form>
+    <script>
+        function appendToExpression(value) {
+            var expressionField = document.getElementById("expression");
+            expressionField.value += value;
+        }
+
+        function clearExpression() {
+            var expressionField = document.getElementById("expression");
+            expressionField.value = "";
+        }
+
+        function calculate() {
+            var expressionField = document.getElementById("expression");
+            var result = eval(expressionField.value); // Use eval to evaluate the expression
+            expressionField.value = result;
+        }
+    </script>
+</body>
+</html>
